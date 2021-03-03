@@ -20,9 +20,9 @@ const client = new Client({
 // testing this out
 
 // this is mac section
-const client = new Client({
-	connectionString:
-		process.env.DATABASE_URL || "postgresql://localhost:5432/contacts",
-});
+// const client = new Client({
+// 	connectionString:
+// 		process.env.DATABASE_URL || "postgresql://localhost:5432/contacts",
+// });
 
 module.exports = client;
