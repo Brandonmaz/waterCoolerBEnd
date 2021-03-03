@@ -2,7 +2,11 @@
   "name": "watercoolerbend",
   "version": "1.0.0",
   "description": "",
+<<<<<<< HEAD
   "main": "postgres.js",
+=======
+  "main": "server.js",
+>>>>>>> ae09d09ec1f5775b97a180b783faa5a8b8512e90
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
