@@ -3,19 +3,11 @@ const router = express.Router();
 const postgres = require("../postgres.js");
 
 router.get("/", (req, res) => {
-<<<<<<< HEAD
-  postgres.query("SELECT * FROM people ORDER BY id ASC;", (err, data) => {
-    console.log(data);
-    // testing again 
-    res.json(data.rows);
-  });
-=======
 	postgres.query("SELECT * FROM people ORDER BY id ASC;", (err, results) => {
 		console.log(results);
 		// testing again
 		res.json(results.rows);
 	});
->>>>>>> dc4271845da9014e9d052b3466e3e754f63ca3ec
 });
 
 router.post("/", (req, res) => {
