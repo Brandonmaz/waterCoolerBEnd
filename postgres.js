@@ -7,6 +7,7 @@ const Client = require("pg").Pool;
 //   password: "password",
 //   port: 5432,
 // });
+// testing this out 
 
 // this is mac section 
 const client = new Client({
