@@ -3,10 +3,10 @@ const router = express.Router();
 const postgres = require("../postgres.js");
 
 router.get("/", (req, res) => {
-  postgres.query("SELECT * FROM people ORDER BY id ASC;", (err, results) => {
-    console.log(results);
+  postgres.query("SELECT * FROM people ORDER BY id ASC;", (err, data) => {
+    console.log(data);
     // testing again 
-    res.json(results.rows);
+    res.json(data.rows);
   });
 });
 
