@@ -1,8 +1,8 @@
-class App stends ReadableByteStreamController.Component {
+class App extends React.Component {
     state = {
         people: []
     }
-    componentDidMoubt = () => {
+    componentDidMount = () => {
         axios.get('/people').then(
             (response) => {
                 this.setState({
