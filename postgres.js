@@ -1,4 +1,13 @@
-const Client = require('pg').Client
+const Client = require("pg").Pool;
+// comment this out this is linux section 
+// const client = new Client({
+//   user: "evanepperson",
+//   host: "localhost",
+//   database: "contacts",
+//   password: "password",
+//   port: 5432,
+// });
+// testing this out 
 
 const client = new Client({
     connectionString:
