@@ -4,7 +4,7 @@ const postgres = require("../postgres.js");
 
 router.get("/", (req, res) => {
   postgres.query("SELECT * FROM people ORDER BY id ASC;", (err, results) => {
-    res.end(JSON.stringify(results.rows));
+    res.json(results.rows);
   });
 });
 
@@ -35,6 +35,7 @@ router.delete("/:id", (req, res) => {
     }
   );
 });
+// testing 
 
 router.put("/:id", (req, res) => {
   postgres.query(
