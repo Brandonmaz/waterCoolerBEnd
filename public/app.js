@@ -1,6 +1,6 @@
-const { response } = require("express");
+// const { response } = require("express");
 
-class App extends ReadableByteStreamController.Component {
+class App extends React.Component {
 	state = {
 		people: [],
 	};
