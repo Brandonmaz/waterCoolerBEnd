@@ -6,7 +6,7 @@ const client = new Client({
   database: process.env.DATABASE_URL || "contacts",
   password: "password",
   port: 5432,
-  ssl: true,
+  // ssl: true,
 });
 // testing this out right now to see if it can get rid of something 
 
