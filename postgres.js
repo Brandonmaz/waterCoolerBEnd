@@ -1,4 +1,4 @@
-const Client = require("pg").Client;
+
 // comment this out this is linux section 
 // const client = new Client({
 //   user: "evanepperson",
