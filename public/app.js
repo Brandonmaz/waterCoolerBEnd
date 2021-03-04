@@ -1,6 +1,3 @@
-import { useAuth0 } from "@auth0/auth0-react";
-
-  const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
 class App extends React.Component {
   state = {
     people: [],
@@ -77,8 +74,6 @@ class App extends React.Component {
     });
   };
 
-  
-
   render = () => {
     return (
       <div>
@@ -126,23 +121,7 @@ class App extends React.Component {
             );
           })}
         </ul>
-        {/* <div>
-          <LoginButton />
-          <LogoutButton />
-          <Profile />
-        </div> */}
-        !isAuthenticated && (
-        <button onClick={() => loginWithRedirect()}>Login</button>)
-        isAuthenticated && (<button onClick={() => logout()}>Logout</button>)
-        isAuthenticated && (
-        <div>
-          <img src={user.picture} alt={user.name} />
-          <h2>{user.name}</h2>
-          <p>{user.email}</p>
-          <JSONPretty data={user} />
-          {/* {JSON.stringify(user, null, 2)} */}
-        </div>
-        )
+        
       </div>
     );
   };
