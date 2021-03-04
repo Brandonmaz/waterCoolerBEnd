@@ -6,6 +6,7 @@ const client = new Client({
   database: process.env.DATABASE_URL || "contacts",
   password: "password",
   port: 5432,
+  ssl: true,
 });
 // testing this out 
 
