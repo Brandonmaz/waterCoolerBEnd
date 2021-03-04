@@ -1,7 +1,7 @@
 {
   "name": "watercoolerbend",
   "version": "1.0.0",
-    "engines": {
+  "engines": {
     "node": "12.18.2",
     "npm": "7.5.2"
   },
