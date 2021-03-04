@@ -15,7 +15,7 @@ const Client = require("pg").Client;
 // this is mac section
 const client = new Client({
 	connectionString:
-		process.env.DATABASE_URL || "postgresql://localhost:5432/contacts?ssl=true",
+		process.env.DATABASE_URL || "postgresql://localhost:5432/contacts",
 });
 // testing 
 
