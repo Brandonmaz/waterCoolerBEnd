@@ -102,7 +102,21 @@ class App extends React.Component {
                 <button value={person.id} onClick={this.deletePerson}>
                   DELETE
                 </button>
-
+                <form id={person.id} onSubmit={this.updatePerson}>
+                  <input
+                    onKeyUp={this.changeUpdatePersonName}
+                    type="text"
+                    placeholder="name"
+                  />
+                  <br />
+                  <input
+                    onKeyUp={this.changeUpdatePersonAge}
+                    type="number"
+                    placeholder="age"
+                  />
+                  <br />
+                  <input type="submit" value="Update Person" />
+                </form>
               </li>
             );
           })}
