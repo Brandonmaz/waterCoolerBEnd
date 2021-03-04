@@ -8,7 +8,7 @@ const client = new Client({
   port: 5432,
   ssl: true,
 });
-// testing this out 
+// testing this out right now to see if it can get rid of something 
 
 
 // this is mac section
