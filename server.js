@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
-const port = process.env.port || 3003;
+const PORT = process.env.PORT || 3003;
 const ObjectId = require("mongoose").Types.ObjectId;
 mongoose.connect(
 	"mongodb+srv://EppersonEvan:SEIRMando@cluster0.4elie.mongodb.net/todo?retryWrites=true&w=majority",
@@ -109,7 +109,7 @@ app.get("/todos", async (req, res) => {
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
-	app.listen(port, () => {
-		console.log(`Example app listening at http://localhost:${port}`);
+	app.listen(PORT, () => {
+		console.log(`Example app listening at http://localhost:${PORT}`);
 	});
 });
