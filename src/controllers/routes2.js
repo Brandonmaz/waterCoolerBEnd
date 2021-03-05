@@ -1,11 +1,11 @@
 const express = require("express");
-const User = require("../models/schema");
-const Todos = require("../models/schema");
+const User = require("../models/schemaUser");
+const Todos = require("../models/schemaTodos");
 
-const router = express.Router();
+const router2 = express.Router();
 // ===========POST ROUTE
 
-router.post("/todos", async (req, res) => {
+router2.post("/todos", async (req, res) => {
 	const { authorization } = req.headers;
 	const [, token] = authorization.split(" ");
 	const [username, password] = token.split(":");
@@ -31,8 +31,8 @@ router.post("/todos", async (req, res) => {
 	res.json(todosItems);
 });
 
-// ===========Shoe Route=================
-router.get("/todos", async (req, res) => {
+// ===========Show Route=================
+router2.get("/todos", async (req, res) => {
 	const { authorization } = req.headers;
 	const [, token] = authorization.split(" ");
 	const [username, password] = token.split(":");
@@ -47,3 +47,4 @@ router.get("/todos", async (req, res) => {
 	const { todos } = await Todos.findOne({ userId: user._id }).exec();
 	res.json(todos);
 });
+module.exports = router2;
