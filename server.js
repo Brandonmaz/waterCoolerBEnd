@@ -3,22 +3,35 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
 const port = 4000;
+const users = require("./controllers/routes1");
+const tasks = require("./controllers/routes2");
 
 const ObjectId = require("mongoose").Types.ObjectId;
+const db = mongoose.connection;
 
+// DATABASE
 mongoose.connect("mongodb://localhost/todo", {
 	useUnifiedTopology: true,
 	useNewUrlParser: true,
 });
+
+// MIDDLEWARE
 app.use(cors());
 app.use(express.json());
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function () {
-	app.listen(port, () => {
-		console.log(`Example app listening at http://localhost:${port}`);
-	});
+app.get("/", (req, res) => {
+	res.send("Welcome");
+});
+app.use("/api/user", users);
+app.use("/api/task", tasks);
+// Define callback functions for various events
+db.on("error", (err) => console.log(err.message + " is Mongod not running?"));
+db.on("connected", () => console.log("mongo connected: ", MONGODB_URI));
+db.on("disconnected", () => console.log("mongo disconnected"));
+
+// Listener
+app.listen(port, () => {
+	console.log(`Example app listening at http://localhost:${port}`);
 });
 
 // const userSchema = new mongoose.Schema({
