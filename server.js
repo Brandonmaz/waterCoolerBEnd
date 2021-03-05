@@ -48,7 +48,7 @@ app.post("/", async (req, res) => {
 app.get("/", (req, res) => {
 	User.find()
 		.then((users) => {
-			res.send(users);
+			res.send("users");
 		})
 		.catch((err) => console.log(err));
 });
