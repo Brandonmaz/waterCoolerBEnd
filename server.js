@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
-const port = 3003;
+const port = process.env.port || 3003;
 const ObjectId = require("mongoose").Types.ObjectId;
 mongoose.connect(
 	"mongodb+srv://EppersonEvan:SEIRMando@cluster0.4elie.mongodb.net/todo?retryWrites=true&w=majority",
@@ -48,7 +48,7 @@ app.post("/", async (req, res) => {
 app.get("/", (req, res) => {
 	User.find()
 		.then((users) => {
-			res.send("users");
+			res.send(users);
 		})
 		.catch((err) => console.log(err));
 });
