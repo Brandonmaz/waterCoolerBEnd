@@ -45,7 +45,7 @@ app.post("/", async (req, res) => {
 	});
 });
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
 	User.find()
 		.then((users) => {
 			res.send(users);
