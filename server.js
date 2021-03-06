@@ -29,6 +29,8 @@ const todosSchema = new mongoose.Schema({
 const Todos = mongoose.model("Todos", todosSchema);
 app.use(cors());
 app.use(express.json());
+// ============Post Route User==================
+
 app.post("/", async (req, res) => {
 	const { username, password } = req.body;
 	const user = await User.findOne({ username }).exec();
@@ -44,6 +46,7 @@ app.post("/", async (req, res) => {
 		message: "success",
 	});
 });
+// ============Index Route==================
 
 app.get("/", (req, res) => {
 	User.find()
@@ -52,6 +55,8 @@ app.get("/", (req, res) => {
 		})
 		.catch((err) => console.log(err));
 });
+// ============Post Route Login==================
+
 app.post("/login", async (req, res) => {
 	const { username, password } = req.body;
 	const user = await User.findOne({ username }).exec();
@@ -66,6 +71,8 @@ app.post("/login", async (req, res) => {
 		message: "success",
 	});
 });
+// ============Post Route Todos==================
+
 app.post("/todos", async (req, res) => {
 	const { authorization } = req.headers;
 	const [, token] = authorization.split(" ");
@@ -91,6 +98,8 @@ app.post("/todos", async (req, res) => {
 	}
 	res.json(todosItems);
 });
+// ============Index Route==================
+
 app.get("/todos", async (req, res) => {
 	const { authorization } = req.headers;
 	const [, token] = authorization.split(" ");
@@ -106,6 +115,14 @@ app.get("/todos", async (req, res) => {
 	const { todos } = await Todos.findOne({ userId: user._id }).exec();
 	res.json(todos);
 });
+// ============Show Route==================
+// Fetching Data
+// uses /api/tesla-info/id
+
+// ============Update Route==================
+
+// //==============Delete===========
+
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
