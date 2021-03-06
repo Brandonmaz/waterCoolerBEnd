@@ -44,16 +44,14 @@ app.post("/", async (req, res) => {
 		message: "success",
 	});
 });
-app.get("/", (req, res) => {
-	res.send("Welcome to the Tesla battery app API");
+
+app.get("/api", (req, res) => {
+	User.find()
+		.then((users) => {
+			res.send(users);
+		})
+		.catch((err) => console.log(err));
 });
-// app.get("/api", (req, res) => {
-// 	User.find()
-// 		.then((users) => {
-// 			res.send(users);
-// 		})
-// 		.catch((err) => console.log(err));
-// });
 app.post("/login", async (req, res) => {
 	const { username, password } = req.body;
 	const user = await User.findOne({ username }).exec();
