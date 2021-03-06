@@ -29,6 +29,9 @@ const todosSchema = new mongoose.Schema({
 const Todos = mongoose.model("Todos", todosSchema);
 app.use(cors());
 app.use(express.json());
+
+// pseudocode: when user visits the main site they should see the signup/login page
+
 app.post("/", async (req, res) => {
 	const { username, password } = req.body;
 	const user = await User.findOne({ username }).exec();
@@ -52,6 +55,7 @@ app.get("/", (req, res) => {
 		})
 		.catch((err) => console.log(err));
 });
+
 app.post("/login", async (req, res) => {
 	const { username, password } = req.body;
 	const user = await User.findOne({ username }).exec();
@@ -66,6 +70,7 @@ app.post("/login", async (req, res) => {
 		message: "success",
 	});
 });
+
 app.post("/todos", async (req, res) => {
 	const { authorization } = req.headers;
 	const [, token] = authorization.split(" ");
@@ -91,6 +96,7 @@ app.post("/todos", async (req, res) => {
 	}
 	res.json(todosItems);
 });
+
 // ============Index Route==================
 
 app.get("/todos", async (req, res) => {
@@ -113,6 +119,20 @@ app.get("/todos", async (req, res) => {
 // uses /api/tesla-info/id
 
 // ============Update Route==================
+app.delete("/todos", async (req, res) => {
+	const { authorization } = req.headers;
+	const [, token] = authorization.split(" ");
+	const [username, password] = token.split(":");
+	const user = await User.findOne({ username }).exec();
+	const id = req.params.id;
+	if (!user || user.password !== password) {
+		res.status(403);
+		res.json({
+			message: "invalid access",
+		});
+		return;
+	}
+});
 
 // //==============Delete===========
 
