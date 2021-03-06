@@ -119,20 +119,7 @@ app.get("/todos", async (req, res) => {
 // uses /api/tesla-info/id
 
 // ============Update Route==================
-app.delete("/todos", async (req, res) => {
-	const { authorization } = req.headers;
-	const [, token] = authorization.split(" ");
-	const [username, password] = token.split(":");
-	const user = await User.findOne({ username }).exec();
-	const id = req.params.id;
-	if (!user || user.password !== password) {
-		res.status(403);
-		res.json({
-			message: "invalid access",
-		});
-		return;
-	}
-});
+
 
 // //==============Delete===========
 
