@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
+<<<<<<< HEAD
 const PORT = process.env.PORT || 3003;
 const ObjectId = require("mongoose").Types.ObjectId;
 mongoose.connect(
@@ -44,6 +45,19 @@ app.post("/", async (req, res) => {
 		message: "success",
 	});
 });
+=======
+const postgres = require("./postgres.js");
+const cors = require('cors')
+app.use(cors())
+app.use(express.json());
+app.use(express.static("public"));
+
+
+const peopleController = require("./controllers/people.js");
+app.use("/people", peopleController);
+
+postgres.connect();
+>>>>>>> 1ca41322d60475a4094a5c1d5a73223303ac2133
 
 app.get("/", (req, res) => {
 	User.find()
