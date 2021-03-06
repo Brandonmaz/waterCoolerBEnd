@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
-<<<<<<< HEAD
 const PORT = process.env.PORT || 3003;
 const ObjectId = require("mongoose").Types.ObjectId;
 mongoose.connect(
@@ -30,6 +29,9 @@ const todosSchema = new mongoose.Schema({
 const Todos = mongoose.model("Todos", todosSchema);
 app.use(cors());
 app.use(express.json());
+
+// ============Post Route==================
+
 app.post("/", async (req, res) => {
 	const { username, password } = req.body;
 	const user = await User.findOne({ username }).exec();
@@ -45,19 +47,7 @@ app.post("/", async (req, res) => {
 		message: "success",
 	});
 });
-=======
-const postgres = require("./postgres.js");
-const cors = require('cors')
-app.use(cors())
-app.use(express.json());
-app.use(express.static("public"));
-
-
-const peopleController = require("./controllers/people.js");
-app.use("/people", peopleController);
-
-postgres.connect();
->>>>>>> 1ca41322d60475a4094a5c1d5a73223303ac2133
+// ============Index Route==================
 
 app.get("/", (req, res) => {
 	User.find()
@@ -66,6 +56,8 @@ app.get("/", (req, res) => {
 		})
 		.catch((err) => console.log(err));
 });
+// ============Post Route==================
+
 app.post("/login", async (req, res) => {
 	const { username, password } = req.body;
 	const user = await User.findOne({ username }).exec();
@@ -80,6 +72,8 @@ app.post("/login", async (req, res) => {
 		message: "success",
 	});
 });
+// ============Post Route==================
+
 app.post("/todos", async (req, res) => {
 	const { authorization } = req.headers;
 	const [, token] = authorization.split(" ");
@@ -105,6 +99,8 @@ app.post("/todos", async (req, res) => {
 	}
 	res.json(todosItems);
 });
+// ============Index Route==================
+
 app.get("/todos", async (req, res) => {
 	const { authorization } = req.headers;
 	const [, token] = authorization.split(" ");
@@ -120,6 +116,28 @@ app.get("/todos", async (req, res) => {
 	const { todos } = await Todos.findOne({ userId: user._id }).exec();
 	res.json(todos);
 });
+// ============Show Route==================
+// Fetching Data
+// uses /api/tesla-info/id
+
+// ============Update Route==================
+router.put("/:id", (req, res) => {
+	const teslaId = req.params.id;
+
+	Tesla.findById(teslaId)
+		.then((tesla) => {
+			tesla.models = req.body.model;
+			tesla.config = req.body.config;
+
+			return tesla.save();
+		})
+		.then((result) => {
+			res.send(result);
+		})
+		.catch((err) => console.log(err));
+});
+// //==============Delete===========
+
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
