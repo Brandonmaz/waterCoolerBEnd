@@ -31,6 +31,11 @@ const Todos = mongoose.model("Todos", todosSchema);
 app.use(cors());
 app.use(express.json());
 
+<<<<<<< HEAD
+=======
+// pseudocode: when user visits the main site they should see the signup/login page
+
+>>>>>>> 461539c4359c7976e81213327ee68efcf586f555
 app.post("/", async (req, res) => {
 	const { username, password } = req.body;
 	const user = await User.findOne({ username }).exec();
@@ -96,6 +101,11 @@ app.post("/todos", async (req, res) => {
 	res.json(todosItems);
 });
 
+<<<<<<< HEAD
+=======
+// ============Index Route==================
+
+>>>>>>> 461539c4359c7976e81213327ee68efcf586f555
 app.get("/todos", async (req, res) => {
 	const { authorization } = req.headers;
 	const [, token] = authorization.split(" ");
@@ -111,6 +121,17 @@ app.get("/todos", async (req, res) => {
 	const { todos } = await Todos.findOne({ userId: user._id }).exec();
 	res.json(todos);
 });
+<<<<<<< HEAD
+=======
+// ============Show Route==================
+// Fetching Data
+// uses /api/tesla-info/id
+
+// ============Update Route==================
+
+
+// //==============Delete===========
+>>>>>>> 461539c4359c7976e81213327ee68efcf586f555
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
