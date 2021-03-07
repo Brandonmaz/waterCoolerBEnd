@@ -1,6 +1,9 @@
 const express = require("express");
+const methodOverride = require("method-override");
 const cors = require("cors");
 const mongoose = require("mongoose");
+
+
 const app = express();
 const PORT = process.env.PORT || 3003;
 const ObjectId = require("mongoose").Types.ObjectId;
@@ -9,6 +12,7 @@ mongoose.connect(
 	{
 		useUnifiedTopology: true,
 		useNewUrlParser: true,
+		useFindAndModify: false,
 	}
 );
 const userSchema = new mongoose.Schema({
@@ -27,8 +31,13 @@ const todosSchema = new mongoose.Schema({
 	],
 });
 const Todos = mongoose.model("Todos", todosSchema);
+
+// MIDDLEWARE
+
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(methodOverride('_method'));
 
 // pseudocode: when user visits the main site they should see the signup/login page
 
@@ -128,7 +137,11 @@ app.delete("/todos", async (req, res) => {
 	const [, token] = authorization.split(" ");
 	const [username, password] = token.split(":");
 	const user = await User.findOne({ username }).exec();
+<<<<<<< HEAD
 	// const id = req.params.id;
+=======
+	const id = req.params.id; // this may be a problem
+>>>>>>> aj
 	if (!user || user.password !== password) {
 		res.status(403);
 		res.json({
