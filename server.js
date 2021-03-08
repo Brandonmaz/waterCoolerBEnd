@@ -137,11 +137,7 @@ app.delete("/todos", async (req, res) => {
 	const [, token] = authorization.split(" ");
 	const [username, password] = token.split(":");
 	const user = await User.findOne({ username }).exec();
-<<<<<<< HEAD
-	// const id = req.params.id;
-=======
 	const id = req.params.id; // this may be a problem
->>>>>>> aj
 	if (!user || user.password !== password) {
 		res.status(403);
 		res.json({
