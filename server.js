@@ -132,40 +132,40 @@ app.get("/todos", async (req, res) => {
 
 // ============Delete Route==================
 
-app.delete("/todos", async (req, res) => {
-	const { authorization } = req.headers;
-	const [, token] = authorization.split(" ");
-	const [username, password] = token.split(":");
-	const user = await User.findOne({ username }).exec();
-	const id = req.params.id; // this may be a problem
-	if (!user || user.password !== password) {
-		res.status(403);
-		res.json({
-			message: "invalid access",
-		});
-		return;
-	}
+// app.delete("/todos", async (req, res) => {
+// 	const { authorization } = req.headers;
+// 	const [, token] = authorization.split(" ");
+// 	const [username, password] = token.split(":");
+// 	const user = await User.findOne({ username }).exec();
+// 	const id = req.params.id; // this may be a problem
+// 	if (!user || user.password !== password) {
+// 		res.status(403);
+// 		res.json({
+// 			message: "invalid access",
+// 		});
+// 		return;
+// 	}
 	// use the user id to call all the users todos
-	const { todos } = await Todos.findOne({ userId: user._id }).exec();
+	// const { todos } = await Todos.findOne({ userId: user._id }).exec();
 	// select from the users todos by id which to delete
-	const id = todos.id;
+	// const id = todos.id;
 	// the id we want is actually: user._id.todo.id
-	Todos.findByIdAndRemove(id).then( data => {
-		if(!data) {
-			res.status(404).send({
-				message: `cannot delete ${id}`
-			});
-		} else {
-			res.send({
-				message: "Todo deleted successfully"
-			});
-		}
-	}).catch(err => {
-		res.status(500).send({
-			message: "could not delete todo with id=" + id
-		});
-	});
-});
+	// Todos.findByIdAndRemove(id).then( data => {
+// 		if(!data) {
+// 			res.status(404).send({
+// 				message: `cannot delete ${id}`
+// 			});
+// 		} else {
+// 			res.send({
+// 				message: "Todo deleted successfully"
+// 			});
+// 		}
+// 	}).catch(err => {
+// 		res.status(500).send({
+// 			message: "could not delete todo with id=" + id
+// 		});
+// 	});
+// });
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
